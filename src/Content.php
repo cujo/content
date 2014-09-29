@@ -3,6 +3,8 @@ namespace Cujo\Content;
 
 abstract class Content implements \ArrayAccess
 {
+    protected $fallbackToKey = false;
+
     public function __get($offset)
     {
         return $this->offsetGet($offset);
@@ -25,7 +27,11 @@ abstract class Content implements \ArrayAccess
 
     public function offsetGet($offset)
     {
-        return $this->get($offset);
+        $r = $this->get($offset);
+        if ((false !== $r && null !== $r)) {
+            return $r;
+        }
+        return $this->isFallbackToKey() ? $offset : false;
     }
 
     public function offsetSet($offset, $value)
@@ -56,5 +62,15 @@ abstract class Content implements \ArrayAccess
     public function isMutable()
     {
         return $this instanceof Mutable;
+    }
+
+    public function setFallbackToKey($fallback = true)
+    {
+        $this->fallbackToKey = $fallback;
+    }
+
+    public function isFallbackToKey()
+    {
+        return $this->fallbackToKey;
     }
 }
