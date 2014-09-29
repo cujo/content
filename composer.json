@@ -1,0 +1,23 @@
+{
+    "name": "cujo/content",
+    "description": "Library for project content management.",
+    "keywords": ["content management"],
+    "license": "MIT",
+    "homepage": "http://github.com/cujo/content",
+    "authors": [
+        {
+            "name": "Alexandr Dvorin",
+            "email": "cujo@inbox.ru",
+            "homepage": "http://github.com/cujo",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cujo\\Content\\": "src"
+        }
+    }
+}
